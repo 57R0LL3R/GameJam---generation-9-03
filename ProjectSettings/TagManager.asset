@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bomb
   - Ground
+  - Obstacle
+  - Ladder
+  - Trap
   - Jetpack
   - Jetpackpickup
   - JumpPadPickup
@@ -16,11 +19,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Level_01
+  - Escaleras
+  - Danger_Zone
   - 
   - 
   - 
@@ -45,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 42930051
     locked: 0
   m_RenderingLayers:
   - Default
