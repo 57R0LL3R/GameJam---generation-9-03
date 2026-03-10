@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2494709424470832823}
   - component: {fileID: 6834535183491270425}
   - component: {fileID: 994063998912025200}
-  - component: {fileID: 2649626142655207358}
   - component: {fileID: 7883687213891944527}
   - component: {fileID: 7997674311674230959}
-  - component: {fileID: 1622177708441897824}
+  - component: {fileID: 2649626142655207358}
   m_Layer: 6
   m_Name: Player_Robot
   m_TagString: Player
@@ -118,22 +117,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2649626142655207358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5422972381851625029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc359b86f38dcd40955a2e62ca0e32b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RobotController
-  velocidadCaminar: 5
-  velocidadCorrer: 8
-  fuerzaVuelo: 7
-  fuerzaSalto: 10
 --- !u!50 &7883687213891944527
 Rigidbody2D:
   serializedVersion: 5
@@ -207,7 +190,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.46941376, y: 0.78991747}
   m_EdgeRadius: 0
---- !u!114 &1622177708441897824
+--- !u!114 &2649626142655207358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc359b86f38dcd40955a2e62ca0e32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotController
-  velocidadCaminar: 2
-  velocidadCorrer: 5
-  fuerzaVuelo: 5
-  fuerzaSalto: 2
+  velocidadCaminar: 5
+  velocidadCorrer: 8
+  fuerzaVuelo: 7
+  fuerzaSalto: 10
