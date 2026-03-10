@@ -3,16 +3,17 @@ using UnityEngine.SceneManagement; // Necesario para reiniciar el nivel
 
 public class PlayerHealth : MonoBehaviour
 {
+
     [Header("Ajustes de Vida")]
-    public int maxHealth = 5;
-    private int currentHealth;
+
+    Powers powers;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        powers = GetComponent<Powers>();
     }
 
-    // --- ESTA ES LA PARTE QUE FALTABA ---
+
     // Detecta cuando el Player entra en un Trigger (Sierras, Pinchos, etc.)
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,16 +21,17 @@ public class PlayerHealth : MonoBehaviour
         if (collision.CompareTag("Trap"))
         {
             Debug.Log("¡Tocado por trampa!");
-            TakeDamage(1); // Quita 1 de vida
+            TakeDamage(10); // Quita 10 de energia
         }
+
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Jugador recibió daño. Vida restante: " + currentHealth);
+        powers.energy -= damage;
+        Debug.Log("Jugador recibió daño. Energia restante restante: " + powers.energy);
 
-        if (currentHealth <= 0)
+        if (powers.energy <= 0)
         {
             Die();
         }
@@ -38,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Jugador murió");
-        
+
         // En lugar de solo desactivar el objeto, reiniciamos el nivel
         // Esto hace que el jugador reaparezca en el inicio automáticamente
         ReiniciarNivel();
