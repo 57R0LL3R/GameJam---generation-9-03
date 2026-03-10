@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Jumpad : MonoBehaviour
 {
+    public float JumpadForce = 40;
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -9,7 +10,7 @@ public class Jumpad : MonoBehaviour
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             {
                 Vector2 jumpVector = new Vector2(0, 1);
-                rb.AddForce(jumpVector * 180, ForceMode2D.Impulse);
+                rb.linearVelocity = jumpVector * JumpadForce;
                 Debug.Log("Jump Pad Activated");
             }
         }
