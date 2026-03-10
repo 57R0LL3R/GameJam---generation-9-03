@@ -86,13 +86,16 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    void ManejarSalto()
+   void ManejarSalto()
     {
         // Al presionar la 'W' una sola vez y estando en el piso
         if (Input.GetKeyDown(KeyCode.W) && enElSuelo)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
-            anim.SetTrigger("Jump"); // Llama a la flecha del Any State
+            anim.SetTrigger("Jump"); 
+            
+            // LA LÍNEA MÁGICA: Le decimos que ya no está en el suelo al instante
+            enElSuelo = false; 
         }
     }
 
@@ -113,6 +116,13 @@ public class RobotController : MonoBehaviour
 
     void ActualizarAnimaciones()
     {
+        // Le enviamos la información actualizada al cerebro (Animator)
+        if (rb.linearVelocity.y > 0.1f || rb.linearVelocity.y < -0.1f)
+        {
+            enElSuelo = false;
+        }
+        // -------------------------
+
         // Le enviamos la información actualizada al cerebro (Animator)
         anim.SetBool("isWalking", estaCaminando);
         anim.SetBool("isFlying", estaVolando);
