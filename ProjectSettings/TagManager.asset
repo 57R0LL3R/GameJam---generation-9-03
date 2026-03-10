@@ -14,6 +14,9 @@ TagManager:
   - JumpPadPickup
   - Key
   - Door
+  - LimitGround
+  - Sword
+  - Enemy
   layers:
   - Default
   - TransparentFX

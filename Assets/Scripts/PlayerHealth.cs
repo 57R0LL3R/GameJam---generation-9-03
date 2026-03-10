@@ -24,6 +24,14 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(10); // Quita 10 de energia
         }
 
+        else if (collision.CompareTag("Sword"))
+        {
+            TakeDamage(2);
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            TakeDamage(2);
+        }
     }
 
     public void TakeDamage(int damage)
