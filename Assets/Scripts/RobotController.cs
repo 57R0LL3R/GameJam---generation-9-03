@@ -77,7 +77,8 @@ public class RobotController : MonoBehaviour
         // Al mantener oprimida la barra espaciadora
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaVuelo);
+            rb.AddForce(Vector2.up*fuerzaVuelo);
+            //rb.linearVelocity = new Vector2(rb.linearVelocity.x,rb.linearVelocity.y);
             estaVolando = true;
         }
         else

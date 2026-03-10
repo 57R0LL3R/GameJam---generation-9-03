@@ -22,6 +22,14 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("¡Tocado por trampa!");
             TakeDamage(1); // Quita 1 de vida
         }
+        else if (collision.CompareTag("Sword"))
+        {
+            TakeDamage(2);
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            TakeDamage(2);
+        }
     }
 
     public void TakeDamage(int damage)
