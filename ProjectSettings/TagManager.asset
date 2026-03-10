@@ -12,6 +12,9 @@ TagManager:
   - Jetpack
   - Jetpackpickup
   - JumpPadPickup
+  - LimitGround
+  - Sword
+  - Enemy
   layers:
   - Default
   - TransparentFX
