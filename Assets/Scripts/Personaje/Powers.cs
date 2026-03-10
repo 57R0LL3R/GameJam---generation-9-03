@@ -1,4 +1,4 @@
-using NUnit.Framework;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +10,7 @@ public class Powers : MonoBehaviour
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
-    int jumpadQuantity = 0;
+
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
@@ -19,7 +19,7 @@ public class Powers : MonoBehaviour
     bool isWalking = false;
     bool isJumping = false;
     int energyDrain = 5;
-    bool haskey = false;
+    public bool hasKey = false;
     Animator anim;
     SpriteRenderer spriteRenderer;
 
@@ -53,11 +53,11 @@ public class Powers : MonoBehaviour
                 doubleJump();
             }
         }
-        if (playerInput.actions["jumpad"].WasPressedThisFrame() && energy > 50 && jumpadQuantity > 0)
+        if (playerInput.actions["jumpad"].WasPressedThisFrame() && energy > 50)
         {
             Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
             energy -= 50;
-            jumpadQuantity--;
+
         }
 
         if (playerInput.actions["move"].IsPressed() && energy > 0)
@@ -170,12 +170,11 @@ public class Powers : MonoBehaviour
         if (other.CompareTag("JumpPadPickup"))
         {
             Destroy(other.gameObject);
-            jumpadQuantity++;
         }
         if (other.CompareTag("Key"))
         {
             Destroy(other.gameObject);
-            haskey = true;
+            hasKey = true;
         }
     }
 }

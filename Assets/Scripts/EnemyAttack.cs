@@ -26,10 +26,12 @@ public class EnemyAttack : MonoBehaviour
     public float attackCooldown = 2f;
 
     private bool canAttack = true;
-
+    Powers powers;
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
+
+        powers = GetComponent<Powers>();
 
         if (player == null)
         {

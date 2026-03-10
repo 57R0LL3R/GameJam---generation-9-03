@@ -12,6 +12,8 @@ TagManager:
   - Jetpack
   - Jetpackpickup
   - JumpPadPickup
+  - Key
+  - Door
   - LimitGround
   - Sword
   - Enemy
