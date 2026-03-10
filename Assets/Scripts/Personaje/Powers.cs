@@ -115,7 +115,7 @@ public class Powers : MonoBehaviour
     {
         if (!isGrounded && hasJetpack && energy > 0)
         {
-            Vector2 jetVector = new Vector2(0, 0.3f);
+            Vector2 jetVector = new Vector2(0, 0.6f);
             rb.AddForce(jetVector * jumpForce);
             energy -= 15 * Time.deltaTime;
         }
