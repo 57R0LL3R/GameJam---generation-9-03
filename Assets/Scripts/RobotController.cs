@@ -94,7 +94,7 @@ public class RobotController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
             anim.SetTrigger("Jump"); 
             
-            // LA LÍNEA MÁGICA: Le decimos que ya no está en el suelo al instante
+            // LA LÍNEA MÁGICA: Corta el circuito de inmediato
             enElSuelo = false; 
         }
     }
@@ -116,6 +116,12 @@ public class RobotController : MonoBehaviour
 
     void ActualizarAnimaciones()
     {
+       if (rb.linearVelocity.y > 0.1f || rb.linearVelocity.y < -0.1f)
+        {
+            enElSuelo = false;
+        }
+        // -------------------------
+
         // Le enviamos la información actualizada al cerebro (Animator)
         if (rb.linearVelocity.y > 0.1f || rb.linearVelocity.y < -0.1f)
         {
