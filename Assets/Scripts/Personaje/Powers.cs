@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,12 +16,20 @@ public class Powers : MonoBehaviour
     bool doubleJumpUsed = false;
     bool isGrounded = true;
     bool hasJetpack = false;
+    bool isWalking = false;
+    bool isJumping = false;
     int energyDrain = 5;
+    bool haskey = false;
+    Animator anim;
+    SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         runIndicator.SetActive(false);
     }
 
@@ -28,6 +37,11 @@ public class Powers : MonoBehaviour
 
     void Update()
     {
+        Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
+
+        isWalking = Mathf.Abs(moveVector.x) > 0.1f && isGrounded;
+        isJumping = !isGrounded;
+
         if (playerInput.actions["jump"].WasPressedThisFrame())
         {
             if (isGrounded && energy >= 10)
@@ -39,39 +53,33 @@ public class Powers : MonoBehaviour
                 doubleJump();
             }
         }
-        if (playerInput.actions["jump"].IsPressed() && hasJetpack)
-        {
-            jetpack();
-        }
-        if (isGrounded)
-        {
-            doubleJumpUsed = false;
-        }
-        if (playerInput.actions["move"].IsPressed() && energy > 0)
-        {
-            moving();
-        }
-
         if (playerInput.actions["jumpad"].WasPressedThisFrame() && energy > 50 && jumpadQuantity > 0)
         {
             Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
             energy -= 50;
             jumpadQuantity--;
         }
+
+        if (playerInput.actions["move"].IsPressed() && energy > 0)
+        {
+            moving();
+        }
+
+        if (playerInput.actions["jump"].IsPressed() && hasJetpack)
+        {
+            jetpack();
+        }
+
+        if (isGrounded)
+        {
+            doubleJumpUsed = false;
+        }
         if (!playerInput.actions["move"].IsPressed())
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
-        if (playerInput.actions["RemoveAll"].WasPressedThisFrame())
-        {
-            hasJetpack = false;
-            jetpackPrefab.SetActive(false);
-            Debug.Log("All Powers Removed");
-        }
-
-
-
-
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("isJumping", isJumping);
     }
     void jump()
     {
@@ -95,18 +103,29 @@ public class Powers : MonoBehaviour
     }
     void moving()
     {
-
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
+
+        if (moveVector.x > 0)
+        {
+            spriteRenderer.flipX = false; // mira a la derecha
+        }
+        else if (moveVector.x < 0)
+        {
+            spriteRenderer.flipX = true; // mira a la izquierda
+        }
         if (playerInput.actions["sprint"].IsPressed() && energy > 0)
         {
             runIndicator.SetActive(true);
-            movespeed = movespeed = 30f;
+            movespeed = 30f;
             energyDrain = 20;
+            isWalking = true;
         }
         else
         {
             runIndicator.SetActive(false);
+            movespeed = 15;
             energyDrain = 10;
+            isWalking = true;
         }
         rb.linearVelocity = new Vector2(moveVector.x * movespeed, rb.linearVelocity.y);
         energy -= energyDrain * Time.deltaTime;
@@ -152,6 +171,11 @@ public class Powers : MonoBehaviour
         {
             Destroy(other.gameObject);
             jumpadQuantity++;
+        }
+        if (other.CompareTag("Key"))
+        {
+            Destroy(other.gameObject);
+            haskey = true;
         }
     }
 }
