@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 994063998912025200}
   - component: {fileID: 7883687213891944527}
   - component: {fileID: 7997674311674230959}
-  - component: {fileID: 1622177708441897824}
+  - component: {fileID: 8790466712758106724}
+  - component: {fileID: 6936278242465486669}
+  - component: {fileID: 5228068615404344155}
   m_Layer: 6
   m_Name: Player_Robot
   m_TagString: Player
@@ -31,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.891, y: -0.065, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,11 +131,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 7
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_GravityScale: 4
+  m_Material: {fileID: 6200000, guid: 02a608e248d3f9d4da8e1f6b9e252be2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -190,7 +192,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.46941376, y: 0.78991747}
   m_EdgeRadius: 0
---- !u!114 &1622177708441897824
+--- !u!114 &8790466712758106724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,10 +201,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 5422972381851625029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcc359b86f38dcd40955a2e62ca0e32b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bd66601f2b84d6479689ba3c469deae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RobotController
-  velocidadCaminar: 2
-  velocidadCorrer: 5
-  fuerzaVuelo: 5
-  fuerzaSalto: 2
+  m_EditorClassIdentifier: Assembly-CSharp::Powers
+  energy: 10000
+  movespeed: 12
+  jumpForce: 107
+  jumpPadPrefab: {fileID: 5072945037498957223, guid: 7b998895e752cf34eba3a9ffa48e549b, type: 3}
+  runIndicator: {fileID: 107744, guid: 0782c4fdae5f1624ba26300a1dc7a0a7, type: 3}
+  jetpackPrefab: {fileID: 1555487318686904519, guid: 580062a7277c554429c9eebc5135e66b, type: 3}
+  hasKey: 0
+--- !u!114 &6936278242465486669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422972381851625029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &5228068615404344155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422972381851625029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871fdf60c2ec0ee48947ac4b19df65dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
