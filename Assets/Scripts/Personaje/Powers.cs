@@ -8,7 +8,7 @@ public class Powers : MonoBehaviour
     public float energy;
     public float movespeed = 15f;
     public float actualSpeed = 15f;
-    public float jumpForce = 80f,flyForce=80f;
+    public float jumpForce = 80f, flyForce = 80f;
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
@@ -16,18 +16,19 @@ public class Powers : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
-    [SerializeField]bool isGrounded = true, hasJetpack = false;
+    [SerializeField] bool isGrounded = true, hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
     public bool isFlying = false;
     int energyDrain = 5;
     int energyDrainActual = 5;
+    public int bateryRecharge;
     public bool hasKey = false;
     SoundManager soundManager;
     Animator anim;
     SpriteRenderer spriteRenderer;
-    
-    public static PlayerState player = PlayerState.life;    
+
+    public static PlayerState player = PlayerState.life;
 
 
     void Start()
@@ -120,7 +121,7 @@ public class Powers : MonoBehaviour
     public void doubleJump()
     {
 
-       
+
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         energy -= 20;
@@ -144,7 +145,7 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["sprint"].IsPressed() && energy > 0)
         {
             runIndicator.SetActive(true);
-            actualSpeed = movespeed*2;
+            actualSpeed = movespeed * 2;
             energyDrainActual = energyDrain * 2;
             isWalking = true;
         }
@@ -160,7 +161,7 @@ public class Powers : MonoBehaviour
     }
     public void jetpack()
     {
-            Debug.Log("jectpack0");
+        Debug.Log("jectpack0");
         if (!isGrounded && hasJetpack && energy > 0)
         {
             Debug.Log("jectpack1");
@@ -206,6 +207,11 @@ public class Powers : MonoBehaviour
         {
             Destroy(other.gameObject);
             hasKey = true;
+        }
+        if (other.CompareTag("Batery"))
+        {
+            energy += bateryRecharge;
+            Destroy(other.gameObject);
         }
     }
 }

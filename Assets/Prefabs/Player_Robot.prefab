@@ -348,10 +348,12 @@ MonoBehaviour:
   movespeed: 5
   actualSpeed: 15
   jumpForce: 100
+  flyForce: 120
   jumpPadPrefab: {fileID: 5072945037498957223, guid: 7b998895e752cf34eba3a9ffa48e549b, type: 3}
   runIndicator: {fileID: 107744, guid: 0782c4fdae5f1624ba26300a1dc7a0a7, type: 3}
-  jetpackPrefab: {fileID: 1555487318686904519, guid: 580062a7277c554429c9eebc5135e66b, type: 3}
+  jetpackPrefab: {fileID: 7167319988094774085, guid: 580062a7277c554429c9eebc5135e66b, type: 3}
   isGrounded: 1
+  hasJetpack: 0
   isFlying: 0
   hasKey: 0
 --- !u!114 &4603589636010937215
