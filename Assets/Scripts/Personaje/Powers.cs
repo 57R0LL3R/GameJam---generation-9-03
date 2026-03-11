@@ -20,9 +20,11 @@ public class Powers : MonoBehaviour
     bool hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
+    public bool isFlying = false;
     int energyDrain = 5;
     int energyDrainActual = 5;
     public bool hasKey = false;
+    SoundManager soundManager;
     Animator anim;
     SpriteRenderer spriteRenderer;
     
@@ -36,6 +38,7 @@ public class Powers : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         runIndicator.SetActive(false);
+        soundManager = GetComponent<SoundManager>();
         StartCoroutine(nameof(AnimationDie));
     }
 
@@ -76,11 +79,18 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["move"].IsPressed() && energy > 0)
         {
             moving();
+            soundManager.PlayWalk();
         }
 
         if (playerInput.actions["jump"].IsPressed() && hasJetpack)
         {
             jetpack();
+            isFlying = true;
+        }
+        else
+        {
+            isFlying = false;
+            soundManager.StopFly();
         }
 
         if (isGrounded)
@@ -93,17 +103,18 @@ public class Powers : MonoBehaviour
         }
         anim.SetBool("isWalking", isWalking);
         anim.SetBool("isJumping", isJumping);
+        anim.SetBool("isFlying", isFlying);
     }
-    void jump()
+    public void jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         energy -= 10;
         isGrounded = false;
         Debug.Log("Jump Used");
-
+        soundManager.PlayJump();
 
     }
-    void doubleJump()
+    public void doubleJump()
     {
 
        
@@ -112,9 +123,10 @@ public class Powers : MonoBehaviour
         energy -= 20;
         doubleJumpUsed = true;
         Debug.Log("Double Jump Used");
+        soundManager.PlayJump();
 
     }
-    void moving()
+    public void moving()
     {
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
 
@@ -143,13 +155,14 @@ public class Powers : MonoBehaviour
         rb.linearVelocity = new Vector2(moveVector.x * actualSpeed, rb.linearVelocity.y);
         energy -= energyDrainActual * Time.deltaTime;
     }
-    void jetpack()
+    public void jetpack()
     {
         if (!isGrounded && hasJetpack && energy > 0)
         {
             Vector2 jetVector = new Vector2(0, 0.6f);
             rb.AddForce(jetVector * jumpForce);
             energy -= 15 * Time.deltaTime;
+            soundManager.PlayFly();
         }
     }
     void OnCollisionEnter2D(Collision2D other)

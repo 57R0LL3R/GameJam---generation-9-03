@@ -1,18 +1,22 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Necesario para reiniciar el nivel
-
 public class PlayerHealth : MonoBehaviour
 {
 
     [Header("Ajustes de Vida")]
-
+    Animator anim;
     Powers powers;
-
+    bool TookDamage = false;
     void Start()
     {
+        anim = GetComponent<Animator>();
         powers = GetComponent<Powers>();
     }
-
+    void Update()
+    {
+        anim.SetBool("TookDamage", TookDamage);
+    }
 
     // Detecta cuando el Player entra en un Trigger (Sierras, Pinchos, etc.)
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,17 +26,45 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("¡Tocado por trampa!");
             TakeDamage(10); // Quita 10 de energia
+
+
         }
 
         else if (collision.CompareTag("Sword"))
         {
-            
-            Die();
-            TakeDamage(2);
+            TakeDamage(20);
+
+
         }
         else if (collision.CompareTag("Enemy"))
         {
-            TakeDamage(2);
+            TakeDamage(20);
+
+
+        }
+
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Trap"))
+        {
+            Debug.Log("¡Tocado por trampa!");
+            TakeDamage(10); // Quita 10 de energia
+            TookDamage = false;
+
+        }
+
+        else if (other.CompareTag("Sword"))
+        {
+            TakeDamage(20);
+            TookDamage = false;
+
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            TakeDamage(20);
+            TookDamage = false;
+
         }
     }
 
@@ -40,11 +72,12 @@ public class PlayerHealth : MonoBehaviour
     {
         powers.energy -= damage;
         Debug.Log("Jugador recibió daño. Energia restante restante: " + powers.energy);
-
+        TookDamage = true;
         if (powers.energy <= 0)
         {
             Die();
         }
+
     }
 
     void Die()
