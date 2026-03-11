@@ -1,5 +1,4 @@
 
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,7 +26,7 @@ public class Powers : MonoBehaviour
     Animator anim;
     SpriteRenderer spriteRenderer;
     
-    public static PlayerState player = PlayerState.life;    
+    public static StatePlayer player = StatePlayer.inMenu;    
 
 
     void Start()
@@ -38,20 +37,15 @@ public class Powers : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         runIndicator.SetActive(false);
         soundManager = GetComponent<SoundManager>();
-        StartCoroutine(nameof(AnimationDie));
+       // StartCoroutine(nameof(AnimationDie));
+        player = StatePlayer.inMenu; 
     }
 
-    IEnumerator AnimationDie()
-    {
-        while (true)
-        {
-            yield return new WaitUntil(() => player == PlayerState.die);
-            anim.SetTrigger("Die");
-        }
-    }
+
 
     void Update()
     {
+        if(player !=StatePlayer.life)return;
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
 
         isWalking = Mathf.Abs(moveVector.x) > 0.1f && isGrounded;

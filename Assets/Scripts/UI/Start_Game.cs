@@ -8,7 +8,7 @@ public class Start_Game : MonoBehaviour
 
     public void IniciarJuego()
     {
-        SceneManager.LoadScene(nombreNivel1);
+       // SceneManager.LoadScene(nombreNivel1);
     }
 
     public void ReiniciarNivel()

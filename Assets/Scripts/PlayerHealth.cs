@@ -1,6 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Necesario para reiniciar el nivel
+public enum StatePlayer
+{
+    die,life,inMenu
+}
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -8,8 +12,10 @@ public class PlayerHealth : MonoBehaviour
     Animator anim;
     Powers powers;
     bool TookDamage = false;
+
     public LifeBar lifeBar;
     public GameObject Bateria;
+    [SerializeField] MenuManger menuManger;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -89,8 +95,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        menuManger.OverMode();
         Debug.Log("Jugador murió");
-        Powers.player = PlayerState.die;
+        Powers.player = StatePlayer.die;
         // En lugar de solo desactivar el objeto, reiniciamos el nivel
         // Esto hace que el jugador reaparezca en el inicio automáticamente
         //ReiniciarNivel();
