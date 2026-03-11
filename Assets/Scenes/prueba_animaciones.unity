@@ -555,6 +555,22 @@ MonoBehaviour:
   energiaMaxima: 100
   energiaActual: 0
   barraVisual: {fileID: 347113112}
+--- !u!114 &392121560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392121545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc359b86f38dcd40955a2e62ca0e32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotController
+  velocidadCaminar: 5
+  velocidadCorrer: 8
+  fuerzaVuelo: 7
+  fuerzaSalto: 10
 --- !u!1 &531788278
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,9 +700,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1622177708441897824, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
+    - {fileID: 2649626142655207358, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5422972381851625029, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 392121560}
     - targetCorrespondingSourceObject: {fileID: 5422972381851625029, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 392121553}
@@ -866,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1157905515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,6 +986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Start_Game
   pantallaMenu: {fileID: 279645428}
   barraEnergia: {fileID: 925263928}
+  pantallaGameOver: {fileID: 0}
 --- !u!1 &1388983454
 GameObject:
   m_ObjectHideFlags: 0
