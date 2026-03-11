@@ -64,31 +64,14 @@ public class Powers : MonoBehaviour
             {
                 jump();
             }
-            else if (!isGrounded && hasJetpack)
-            {
-                jetpack();
-            }
-            else if (!isGrounded && !doubleJumpUsed && energy >= 20 && !hasJetpack)
+            else if (!isGrounded && !doubleJumpUsed && energy >= 20)
             {
                 doubleJump();
             }
         }
-        if (playerInput.actions["jumpad"].WasPressedThisFrame() && energy > 50)
-        {
-            Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
-            energy -= 50;
-
-        }
-
-        if (playerInput.actions["move"].IsPressed() && energy > 0)
-        {
-            moving();
-            soundManager.PlayWalk();
-        }
-
-        if (playerInput.actions["jump"].IsPressed() && hasJetpack)
-        {
-            jetpack();
+        if(playerInput.actions["Click"].IsPressed()){
+           jetpack();
+           Debug.Log("click");
             isFlying = true;
         }
         else
@@ -96,6 +79,20 @@ public class Powers : MonoBehaviour
             isFlying = false;
             soundManager.StopFly();
         }
+        if(playerInput.actions["RightClick"].WasPressedThisFrame() && energy > 50)
+        {
+            
+            Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
+            energy -= 50;
+        }
+
+
+        if (playerInput.actions["move"].IsPressed() && energy > 0)
+        {
+            moving();
+            soundManager.PlayWalk();
+        }
+
 
         if (isGrounded)
         {
@@ -161,12 +158,11 @@ public class Powers : MonoBehaviour
     }
     public void jetpack()
     {
-        Debug.Log("jectpack0");
-        if (!isGrounded && hasJetpack && energy > 0)
+            Debug.Log("jectpack0");
+        if (hasJetpack && energy > 0)
         {
             Debug.Log("jectpack1");
-            Vector2 jetVector = new Vector2(0, 0.6f);
-            rb.AddForce(jetVector * flyForce);
+            rb.AddForce(Vector2.up * flyForce*100);
             energy -= 15 * Time.deltaTime;
             soundManager.PlayFly();
         }
