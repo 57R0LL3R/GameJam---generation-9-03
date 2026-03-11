@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf73aa8bdee11e47b6556d5ac7353f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jumpad
+  JumpadForce: 40
 --- !u!61 &8727203058125682090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.736351}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -149,5 +150,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 8.88, y: 3.7}
+  m_Size: {x: 8.88, y: 7.172703}
   m_EdgeRadius: 0
