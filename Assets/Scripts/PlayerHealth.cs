@@ -1,6 +1,10 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Necesario para reiniciar el nivel
+public enum StatePlayer
+{
+    die,life,inMenu
+}
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -8,14 +12,23 @@ public class PlayerHealth : MonoBehaviour
     Animator anim;
     Powers powers;
     bool TookDamage = false;
+
+    public LifeBar lifeBar;
+    public GameObject Bateria;
+    [SerializeField] MenuManger menuManger;
     void Start()
     {
         anim = GetComponent<Animator>();
         powers = GetComponent<Powers>();
+        if(Bateria!=null)
+        lifeBar = Bateria.GetComponent<LifeBar>();
+        else
+        lifeBar = GameObject.Find("Carga_Batería").GetComponent<LifeBar>();
     }
     void Update()
     {
         anim.SetBool("TookDamage", TookDamage);
+        lifeBar.amountLife = powers.energy;
     }
 
     // Detecta cuando el Player entra en un Trigger (Sierras, Pinchos, etc.)
@@ -82,8 +95,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        menuManger.OverMode();
         Debug.Log("Jugador murió");
-        Powers.player = PlayerState.die;
+        Powers.player = StatePlayer.die;
         // En lugar de solo desactivar el objeto, reiniciamos el nivel
         // Esto hace que el jugador reaparezca en el inicio automáticamente
         //ReiniciarNivel();
