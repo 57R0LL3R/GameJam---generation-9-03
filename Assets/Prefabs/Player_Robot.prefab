@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8790466712758106724}
   - component: {fileID: 6936278242465486669}
   - component: {fileID: 5228068615404344155}
+  - component: {fileID: 2649626142655207358}
   m_Layer: 6
   m_Name: Player_Robot
   m_TagString: Player
@@ -205,11 +206,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Powers
   energy: 10000
-  movespeed: 0
+  movespeed: 12
+  actualSpeed: 15
   jumpForce: 107
   jumpPadPrefab: {fileID: 5072945037498957223, guid: 7b998895e752cf34eba3a9ffa48e549b, type: 3}
   runIndicator: {fileID: 107744, guid: 0782c4fdae5f1624ba26300a1dc7a0a7, type: 3}
   jetpackPrefab: {fileID: 1555487318686904519, guid: 580062a7277c554429c9eebc5135e66b, type: 3}
+  isGrounded: 1
   hasKey: 0
 --- !u!114 &6936278242465486669
 MonoBehaviour:
@@ -253,3 +256,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871fdf60c2ec0ee48947ac4b19df65dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!114 &2649626142655207358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422972381851625029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc359b86f38dcd40955a2e62ca0e32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotController
+  velocidadCaminar: 1
+  velocidadCorrer: 8
+  fuerzaVuelo: 7
+  fuerzaSalto: 10
