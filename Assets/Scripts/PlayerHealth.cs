@@ -8,14 +8,21 @@ public class PlayerHealth : MonoBehaviour
     Animator anim;
     Powers powers;
     bool TookDamage = false;
+    public LifeBar lifeBar;
+    public GameObject Bateria;
     void Start()
     {
         anim = GetComponent<Animator>();
         powers = GetComponent<Powers>();
+        if(Bateria!=null)
+        lifeBar = Bateria.GetComponent<LifeBar>();
+        else
+        lifeBar = GameObject.Find("Carga_Batería").GetComponent<LifeBar>();
     }
     void Update()
     {
         anim.SetBool("TookDamage", TookDamage);
+        lifeBar.amountLife = powers.energy;
     }
 
     // Detecta cuando el Player entra en un Trigger (Sierras, Pinchos, etc.)
