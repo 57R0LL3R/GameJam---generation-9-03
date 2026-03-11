@@ -2032,7 +2032,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 519939204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuManger, Assembly-CSharp
+        m_MethodName: NormalMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &519939204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2928,7 +2940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &977506416
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2992,9 +3004,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243361367}
-        m_TargetAssemblyTypeName: Start_Game, Assembly-CSharp
-        m_MethodName: IniciarJuego
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuManger, Assembly-CSharp
+        m_MethodName: PlayMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3059,7 +3071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1008424436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3755,6 +3767,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuManger, Assembly-CSharp
+        m_MethodName: PlayMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1622989899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4170,6 +4194,10 @@ PrefabInstance:
       propertyPath: Bateria
       value: 
       objectReference: {fileID: 874075346}
+    - target: {fileID: 5228068615404344155, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
+      propertyPath: menuManger
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5422972381851625029, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
       propertyPath: m_Name
       value: Player_Robot (1)
