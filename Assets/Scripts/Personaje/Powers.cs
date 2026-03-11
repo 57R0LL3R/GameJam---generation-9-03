@@ -67,7 +67,6 @@ public class Powers : MonoBehaviour
         {
             jetpack();
             Debug.Log("click");
-            isFlying = true;
         }
         else
         {
@@ -163,6 +162,7 @@ public class Powers : MonoBehaviour
             rb.AddForce(Vector2.up * flyForce * 100);
             energy -= 15 * Time.deltaTime;
             soundManager.PlayFly();
+            isFlying = true;
         }
     }
     void OnCollisionEnter2D(Collision2D other)
