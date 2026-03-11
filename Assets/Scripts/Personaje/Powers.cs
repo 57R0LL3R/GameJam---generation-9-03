@@ -8,7 +8,7 @@ public class Powers : MonoBehaviour
     public float energy;
     public float movespeed = 15f;
     public float actualSpeed = 15f;
-    public float jumpForce = 80f;
+    public float jumpForce = 80f,flyForce=80f;
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
@@ -16,8 +16,7 @@ public class Powers : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
-    [SerializeField]bool isGrounded = true;
-    bool hasJetpack = false;
+    [SerializeField]bool isGrounded = true, hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
     int energyDrain = 5;
@@ -61,6 +60,10 @@ public class Powers : MonoBehaviour
             {
                 jump();
             }
+            else if (!isGrounded && hasJetpack)
+            {
+                jetpack();
+            }
             else if (!isGrounded && !doubleJumpUsed && energy >= 20 && !hasJetpack)
             {
                 doubleJump();
@@ -78,10 +81,6 @@ public class Powers : MonoBehaviour
             moving();
         }
 
-        if (playerInput.actions["jump"].IsPressed() && hasJetpack)
-        {
-            jetpack();
-        }
 
         if (isGrounded)
         {
@@ -145,10 +144,12 @@ public class Powers : MonoBehaviour
     }
     void jetpack()
     {
+            Debug.Log("jectpack0");
         if (!isGrounded && hasJetpack && energy > 0)
         {
+            Debug.Log("jectpack1");
             Vector2 jetVector = new Vector2(0, 0.6f);
-            rb.AddForce(jetVector * jumpForce);
+            rb.AddForce(jetVector * flyForce);
             energy -= 15 * Time.deltaTime;
         }
     }
