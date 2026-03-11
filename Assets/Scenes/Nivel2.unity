@@ -2357,7 +2357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790466712758106724, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
       propertyPath: flyForce
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8790466712758106724, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
       propertyPath: jetpackPrefab
