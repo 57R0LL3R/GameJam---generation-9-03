@@ -7,7 +7,7 @@ public class Powers : MonoBehaviour
     public float energy;
     public float movespeed = 15f;
     public float actualSpeed = 15f;
-    public float jumpForce = 80f,flyForce=80f;
+    public float jumpForce, flyForce;
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
@@ -15,12 +15,13 @@ public class Powers : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
-    [SerializeField]bool isGrounded = true, hasJetpack = false;
+    [SerializeField] bool isGrounded = true, hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
     public bool isFlying = false;
     int energyDrain = 5;
     int energyDrainActual = 5;
+    public int bateryRecharge;
     public bool hasKey = false;
     SoundManager soundManager;
     Animator anim;
@@ -45,7 +46,7 @@ public class Powers : MonoBehaviour
 
     void Update()
     {
-        if(player !=StatePlayer.life)return;
+       // if(player !=StatePlayer.life)return;
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
 
         isWalking = Mathf.Abs(moveVector.x) > 0.1f && isGrounded;
@@ -62,9 +63,10 @@ public class Powers : MonoBehaviour
                 doubleJump();
             }
         }
-        if(playerInput.actions["Click"].IsPressed()){
-           jetpack();
-           Debug.Log("click");
+        if (playerInput.actions["Click"].IsPressed())
+        {
+            jetpack();
+            Debug.Log("click");
             isFlying = true;
         }
         else
@@ -72,9 +74,9 @@ public class Powers : MonoBehaviour
             isFlying = false;
             soundManager.StopFly();
         }
-        if(playerInput.actions["RightClick"].WasPressedThisFrame() && energy > 50)
+        if (playerInput.actions["RightClick"].WasPressedThisFrame() && energy > 50)
         {
-            
+
             Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
             energy -= 50;
         }
@@ -111,7 +113,7 @@ public class Powers : MonoBehaviour
     public void doubleJump()
     {
 
-       
+
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         energy -= 20;
@@ -135,7 +137,7 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["sprint"].IsPressed() && energy > 0)
         {
             runIndicator.SetActive(true);
-            actualSpeed = movespeed*2;
+            actualSpeed = movespeed * 2;
             energyDrainActual = energyDrain * 2;
             isWalking = true;
         }
@@ -151,11 +153,11 @@ public class Powers : MonoBehaviour
     }
     public void jetpack()
     {
-            Debug.Log("jectpack0");
+        Debug.Log("jectpack0");
         if (hasJetpack && energy > 0)
         {
             Debug.Log("jectpack1");
-            rb.AddForce(Vector2.up * flyForce*100);
+            rb.AddForce(Vector2.up * flyForce * 100);
             energy -= 15 * Time.deltaTime;
             soundManager.PlayFly();
         }
@@ -196,6 +198,11 @@ public class Powers : MonoBehaviour
         {
             Destroy(other.gameObject);
             hasKey = true;
+        }
+        if (other.CompareTag("Batery"))
+        {
+            energy += bateryRecharge;
+            Destroy(other.gameObject);
         }
     }
 }

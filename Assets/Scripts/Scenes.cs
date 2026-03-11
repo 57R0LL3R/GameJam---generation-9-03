@@ -11,7 +11,7 @@ public class Scenes : MonoBehaviour
 
         if (powers.hasKey)
         {
-            SceneManager.LoadScene("Pruebas");
+            SceneManager.LoadScene("Level3");
         }
     }
 }

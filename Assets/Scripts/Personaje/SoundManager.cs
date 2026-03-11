@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip walkSound;
     public AudioClip flySound;
+    public AudioClip menuMusic;
     Powers powers;
 
     float walkCooldown = 0.35f;
@@ -50,4 +51,6 @@ public class SoundManager : MonoBehaviour
             flying = false;
         }
     }
+
+
 }
