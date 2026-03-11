@@ -5,7 +5,7 @@ public class Scenes : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject Jugador = GameObject.Find("Player");
+        GameObject Jugador = GameObject.FindWithTag("Player");
 
         Powers powers = Jugador.GetComponent<Powers>();
 
