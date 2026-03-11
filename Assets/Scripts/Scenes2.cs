@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Scenes : MonoBehaviour
+public class Scenes2 : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,7 +11,7 @@ public class Scenes : MonoBehaviour
 
         if (powers.hasKey)
         {
-            SceneManager.LoadScene("Level3");
+            SceneManager.LoadScene("Nivel_Integración");
         }
     }
 }

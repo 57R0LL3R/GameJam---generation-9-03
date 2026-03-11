@@ -1,5 +1,4 @@
 
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +7,7 @@ public class Powers : MonoBehaviour
     public float energy;
     public float movespeed = 15f;
     public float actualSpeed = 15f;
-    public float jumpForce = 80f, flyForce = 80f;
+    public float jumpForce, flyForce;
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
@@ -27,8 +26,8 @@ public class Powers : MonoBehaviour
     SoundManager soundManager;
     Animator anim;
     SpriteRenderer spriteRenderer;
-
-    public static PlayerState player = PlayerState.life;
+    
+    public static StatePlayer player = StatePlayer.inMenu;    
 
 
     void Start()
@@ -39,20 +38,15 @@ public class Powers : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         runIndicator.SetActive(false);
         soundManager = GetComponent<SoundManager>();
-        StartCoroutine(nameof(AnimationDie));
+       // StartCoroutine(nameof(AnimationDie));
+        player = StatePlayer.inMenu; 
     }
 
-    IEnumerator AnimationDie()
-    {
-        while (true)
-        {
-            yield return new WaitUntil(() => player == PlayerState.die);
-            anim.SetTrigger("Die");
-        }
-    }
+
 
     void Update()
     {
+       // if(player !=StatePlayer.life)return;
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
 
         isWalking = Mathf.Abs(moveVector.x) > 0.1f && isGrounded;
@@ -69,9 +63,10 @@ public class Powers : MonoBehaviour
                 doubleJump();
             }
         }
-        if(playerInput.actions["Click"].IsPressed()){
-           jetpack();
-           Debug.Log("click");
+        if (playerInput.actions["Click"].IsPressed())
+        {
+            jetpack();
+            Debug.Log("click");
             isFlying = true;
         }
         else
@@ -79,9 +74,9 @@ public class Powers : MonoBehaviour
             isFlying = false;
             soundManager.StopFly();
         }
-        if(playerInput.actions["RightClick"].WasPressedThisFrame() && energy > 50)
+        if (playerInput.actions["RightClick"].WasPressedThisFrame() && energy > 50)
         {
-            
+
             Instantiate(jumpPadPrefab, transform.position, Quaternion.identity);
             energy -= 50;
         }
@@ -90,7 +85,10 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["move"].IsPressed() && energy > 0)
         {
             moving();
-            soundManager.PlayWalk();
+            if (isGrounded)
+            {
+                soundManager.PlayWalk();
+            }
         }
 
 
@@ -158,11 +156,11 @@ public class Powers : MonoBehaviour
     }
     public void jetpack()
     {
-            Debug.Log("jectpack0");
+        Debug.Log("jectpack0");
         if (hasJetpack && energy > 0)
         {
             Debug.Log("jectpack1");
-            rb.AddForce(Vector2.up * flyForce*100);
+            rb.AddForce(Vector2.up * flyForce * 100);
             energy -= 15 * Time.deltaTime;
             soundManager.PlayFly();
         }
