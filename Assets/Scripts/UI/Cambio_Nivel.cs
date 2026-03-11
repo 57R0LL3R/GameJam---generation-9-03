@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PortalNivel : MonoBehaviour
 {
-    [Header("Configuración")]
+   
     public string nombreSiguienteNivel = "Nivel2"; 
 
     private void OnTriggerEnter2D(Collider2D other)
