@@ -1,12 +1,14 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Powers : MonoBehaviour
 {
     public float energy;
-    public float movespeed;
-    public float jumpForce = 100;
+    public float movespeed = 15f;
+    public float actualSpeed = 15f;
+    public float jumpForce = 80f;
     public GameObject jumpPadPrefab;
     public GameObject runIndicator;
     public GameObject jetpackPrefab;
@@ -14,16 +16,19 @@ public class Powers : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
-    bool isGrounded = true;
+    [SerializeField]bool isGrounded = true;
     bool hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
     public bool isFlying = false;
     int energyDrain = 5;
+    int energyDrainActual = 5;
     public bool hasKey = false;
     SoundManager soundManager;
     Animator anim;
     SpriteRenderer spriteRenderer;
+    
+    public static PlayerState player = PlayerState.life;    
 
 
     void Start()
@@ -34,9 +39,17 @@ public class Powers : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         runIndicator.SetActive(false);
         soundManager = GetComponent<SoundManager>();
+        StartCoroutine(nameof(AnimationDie));
     }
 
-
+    IEnumerator AnimationDie()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => player == PlayerState.die);
+            anim.SetTrigger("Die");
+        }
+    }
 
     void Update()
     {
@@ -94,8 +107,7 @@ public class Powers : MonoBehaviour
     }
     public void jump()
     {
-        Vector2 jumpVector = new Vector2(0, 1);
-        rb.AddForce(jumpVector * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         energy -= 10;
         isGrounded = false;
         Debug.Log("Jump Used");
@@ -105,8 +117,9 @@ public class Powers : MonoBehaviour
     public void doubleJump()
     {
 
-        Vector2 jumpVector = new Vector2(0, 1);
-        rb.AddForce(jumpVector * jumpForce, ForceMode2D.Impulse);
+       
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         energy -= 20;
         doubleJumpUsed = true;
         Debug.Log("Double Jump Used");
@@ -128,19 +141,19 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["sprint"].IsPressed() && energy > 0)
         {
             runIndicator.SetActive(true);
-            movespeed = 20f;
-            energyDrain = 20;
+            actualSpeed = movespeed*2;
+            energyDrainActual = energyDrain * 2;
             isWalking = true;
         }
         else
         {
             runIndicator.SetActive(false);
-            movespeed = 10;
-            energyDrain = 10;
+            actualSpeed = movespeed;
+            energyDrainActual = energyDrain;
             isWalking = true;
         }
-        rb.linearVelocity = new Vector2(moveVector.x * movespeed, rb.linearVelocity.y);
-        energy -= energyDrain * Time.deltaTime;
+        rb.linearVelocity = new Vector2(moveVector.x * actualSpeed, rb.linearVelocity.y);
+        energy -= energyDrainActual * Time.deltaTime;
     }
     public void jetpack()
     {
