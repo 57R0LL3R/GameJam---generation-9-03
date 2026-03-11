@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
 
         else if (collision.CompareTag("Sword"))
         {
+            
+            Die();
             TakeDamage(2);
         }
         else if (collision.CompareTag("Enemy"))
@@ -48,10 +50,10 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Jugador murió");
-
+        Powers.player = PlayerState.die;
         // En lugar de solo desactivar el objeto, reiniciamos el nivel
         // Esto hace que el jugador reaparezca en el inicio automáticamente
-        ReiniciarNivel();
+        //ReiniciarNivel();
     }
 
     void ReiniciarNivel()

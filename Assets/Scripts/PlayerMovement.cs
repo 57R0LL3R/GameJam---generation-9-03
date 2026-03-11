@@ -1,6 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum PlayerState
+{
+    die,life
+}
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Estado")]
     [SerializeField] private bool isOnLadder = false;
-    
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private float initialGravity;

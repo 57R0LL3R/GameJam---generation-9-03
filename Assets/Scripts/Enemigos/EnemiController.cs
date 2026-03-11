@@ -79,6 +79,20 @@ public class EnemiController : MonoBehaviour
             direction *= -1;
             spriteRenderer.flipX = direction < 0;
         }
+        
+    }
+    private void OnTriggerExit2D(Collider2D c) {
+        if (c.CompareTag("Ground"))
+        {
+            moving = false;
+            enemyRb.linearVelocity = Vector2.zero;
+            animator.SetInteger("Dead",2);
+            Invoke(nameof(Deactive),1f);
+        }
+    }
+    void Deactive()
+    {
+        gameObject.SetActive(false);
     }
     void DefStateAnimator(int state = 0)
     {
