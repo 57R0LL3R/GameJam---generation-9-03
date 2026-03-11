@@ -129,6 +129,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2494709424470832823, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
   m_PrefabInstance: {fileID: 1285040655}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87472256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd66601f2b84d6479689ba3c469deae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Powers
+  energy: 10000
+  movespeed: 12
+  actualSpeed: 15
+  jumpForce: 107
+  jumpPadPrefab: {fileID: 5072945037498957223, guid: 7b998895e752cf34eba3a9ffa48e549b, type: 3}
+  runIndicator: {fileID: 107744, guid: 0782c4fdae5f1624ba26300a1dc7a0a7, type: 3}
+  jetpackPrefab: {fileID: 1555487318686904519, guid: 580062a7277c554429c9eebc5135e66b, type: 3}
+  isGrounded: 1
+  hasKey: 0
+--- !u!114 &87472265
+MonoBehaviour:
 --- !u!82 &87472272
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,6 +254,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45ff67b708fc3db48bb94e9501acb5e0, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+--- !u!4 &87472267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2494709424470832823, guid: 9068d8c79772b2f4aaaeb8eddf5cb1a5, type: 3}
+  m_PrefabInstance: {fileID: 1285040655}
+  m_PrefabAsset: {fileID: 0}
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   audioSource: {fileID: 87472272}
   jumpSound: {fileID: 8300000, guid: 5172e3bb0a12e9b48b8ccf76bc6fab7b, type: 3}
@@ -1967,6 +1990,11 @@ Transform:
   m_GameObject: {fileID: 956987313}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.7822227, y: 3.937954, z: -9.3452}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1399397045}
   m_LocalPosition: {x: -2.2154465, y: 1.6145295, z: -4}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
@@ -3016,6 +3044,56 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 486416868}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1399397043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399397045}
+  - component: {fileID: 1399397044}
+  m_Layer: 0
+  m_Name: FocusCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1399397044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399397043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430bbf398be0d4f49890a191d337b5c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowPlayer
+  xMax: 27.7
+  xMin: -12.3
+  yMin: -11.9
+  yMax: 4
+  player: {fileID: 87472267}
+--- !u!4 &1399397045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399397043}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 2.12}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 956987317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466231509
@@ -4144,6 +4222,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 1099569885}
   - {fileID: 1285040655}
+  - {fileID: 685314852}
+  - {fileID: 1963857354}
+  - {fileID: 815323165}
+  - {fileID: 2534446843283097494}
+  - {fileID: 1329690352}
+  - {fileID: 1399397045}
   - {fileID: 2534446843283097494}
   - {fileID: 1329690352}
   - {fileID: 1022750366}

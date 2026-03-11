@@ -10,7 +10,7 @@ public class EnemiController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     Rigidbody2D enemyRb;
     SpriteRenderer spriteRenderer;
-    [SerializeField] float speedEnemy = 2,forcedash = 1;
+    [SerializeField] float speedEnemy = 2,forcedash = 1,forcePush=5;
     public GameObject sword;
     int direction = 1;
     [SerializeField]Transform player;
@@ -19,9 +19,11 @@ public class EnemiController : MonoBehaviour
     Animator animator ;
     string tipeMove = "TipeMove";
     string attack = "Attack";
+    Rigidbody2D PlayerRb;
     void Start()
     {
         
+        PlayerRb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
             DefStateAnimator(1);
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -78,6 +80,9 @@ public class EnemiController : MonoBehaviour
         {
             direction *= -1;
             spriteRenderer.flipX = direction < 0;
+        }else if (collision.CompareTag("Player"))
+        {
+            PlayerRb.AddForce(direction * forcePush * Vector2.right);
         }
         
     }
