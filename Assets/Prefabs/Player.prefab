@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 6936278242465486669}
   - component: {fileID: 5228068615404344155}
   - component: {fileID: 8793666835458656343}
-  m_Layer: 6
-  m_Name: Player_Robot
+  m_Layer: 0
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.891, y: -0.065, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
   energy: 1000
   movespeed: 5
   actualSpeed: 15
-  jumpForce: 120
+  jumpForce: 110
   flyForce: 3
   jumpPadPrefab: {fileID: 5072945037498957223, guid: 7b998895e752cf34eba3a9ffa48e549b, type: 3}
   runIndicator: {fileID: 107744, guid: 0782c4fdae5f1624ba26300a1dc7a0a7, type: 3}
@@ -235,6 +235,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 5172e3bb0a12e9b48b8ccf76bc6fab7b, type: 3}
   walkSound: {fileID: 8300000, guid: 6c8cf69d27811424eaefa6e1f0b33eed, type: 3}
   flySound: {fileID: 8300000, guid: 5b6e6292fe221ee42bd4183eb545619f, type: 3}
+  menuMusic: {fileID: 0}
 --- !u!114 &6936278242465486669
 MonoBehaviour:
   m_ObjectHideFlags: 0

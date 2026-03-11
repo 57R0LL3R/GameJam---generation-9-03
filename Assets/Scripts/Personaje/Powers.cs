@@ -85,7 +85,10 @@ public class Powers : MonoBehaviour
         if (playerInput.actions["move"].IsPressed() && energy > 0)
         {
             moving();
-            soundManager.PlayWalk();
+            if (isGrounded)
+            {
+                soundManager.PlayWalk();
+            }
         }
 
 
