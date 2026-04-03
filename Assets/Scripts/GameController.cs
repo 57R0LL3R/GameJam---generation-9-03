@@ -7,8 +7,6 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
     public StateGame stateGame = StateGame.menu;
-    private PlayerController playerControl;
-    private ObstaculeGenerator obstaculeControl;
     void Awake()
     {
         if (Instance == null)
@@ -26,27 +24,5 @@ public class GameController : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        playerControl = GameObject.Find("Player").GetComponent<PlayerController>();
-        obstaculeControl = GameObject.Find("ObstaculeGenerator").GetComponent<ObstaculeGenerator>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        stateGame = playerControl.stateGame;
-        switch (stateGame)
-        {
-            case StateGame.dead:
-                obstaculeControl.SetSpawning(false);
-            break;
-            case StateGame.menu:
-
-            break;
-            case StateGame.playing:
-                obstaculeControl.SetSpawning(true);
-            break;
-        }
-    }
 }

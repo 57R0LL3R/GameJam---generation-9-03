@@ -11,7 +11,8 @@ public class Scenes : MonoBehaviour
 
         if (powers.hasKey)
         {
-            SceneManager.LoadScene("Level3");
+            CurrentState.current.level = CurrentView.l3;
+            CurrentState.current.view = CurrentState.current.level;
         }
     }
 }

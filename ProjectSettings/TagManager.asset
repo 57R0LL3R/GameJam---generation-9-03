@@ -18,6 +18,7 @@ TagManager:
   - Sword
   - Enemy
   - Batery
+  - Tp
   layers:
   - Default
   - TransparentFX

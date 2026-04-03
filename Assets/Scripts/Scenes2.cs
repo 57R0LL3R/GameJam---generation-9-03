@@ -11,7 +11,7 @@ public class Scenes2 : MonoBehaviour
 
         if (powers.hasKey)
         {
-            SceneManager.LoadScene("Nivel_Integración");
+            CurrentState.current.view = CurrentView.Menu;
         }
     }
 }

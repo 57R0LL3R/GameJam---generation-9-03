@@ -3,17 +3,17 @@ using UnityEngine.SceneManagement; // <--- Línea obligatoria para cambiar de es
 
 public class Start_Game : MonoBehaviour
 {
-    [Header("Configuración de Escenas")]
-    public string nombreNivel1 = "Level_01";
 
 
     public void IniciarJuego()
     {
-        SceneManager.LoadScene(nombreNivel1);
+        CurrentState.current.view = CurrentState.current.level;
+        GameController.Instance.stateGame = StateGame.playing;
+
     }
 
     public void ReiniciarNivel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        IniciarJuego();
     }
 }

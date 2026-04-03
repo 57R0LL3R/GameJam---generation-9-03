@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Powers : MonoBehaviour
 {
-    public float energy;
+    public float energy=1000;
     public float movespeed = 15f;
     public float actualSpeed = 15f;
     public float jumpForce, flyForce;
@@ -15,7 +15,7 @@ public class Powers : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput playerInput;
     bool doubleJumpUsed = false;
-    [SerializeField] bool isGrounded = true, hasJetpack = false;
+    [SerializeField] public bool isGrounded = true, hasJetpack = false;
     bool isWalking = false;
     bool isJumping = false;
     public bool isFlying = false;
@@ -46,7 +46,7 @@ public class Powers : MonoBehaviour
 
     void Update()
     {
-       // if(player !=StatePlayer.life)return;
+       if(GameController.Instance.stateGame != StateGame.playing){rb.linearVelocity =Vector2.zero;return;}
         Vector2 moveVector = playerInput.actions["move"].ReadValue<Vector2>();
 
         isWalking = Mathf.Abs(moveVector.x) > 0.1f && isGrounded;

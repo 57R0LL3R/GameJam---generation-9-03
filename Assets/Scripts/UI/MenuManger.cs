@@ -7,7 +7,14 @@ public class MenuManger : MonoBehaviour
     
     void Start()
     {
-        NormalMode();
+        if(GameController.Instance.stateGame == StateGame.menu)
+        {
+            NormalMode();
+        }
+        else
+        {
+            OverMode();
+        }
     }
 
     // Update is called once per frame
@@ -24,8 +31,7 @@ public class MenuManger : MonoBehaviour
     }
     public void OverMode()
     {
-        
-        menuGameOver.SetActive(false);
+        menuNormal.SetActive(false);
         menuGamePlay.SetActive(false);
         menuGameOver.SetActive(true);
     }

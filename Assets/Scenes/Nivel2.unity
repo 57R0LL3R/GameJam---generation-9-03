@@ -439,7 +439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb32f7e953fa808428fd66bac0032c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Start_Game
-  nombreNivel1: Level_01
 --- !u!114 &174740558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,53 +813,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.4505424, y: 0.9666128}
   m_EdgeRadius: 0
---- !u!1 &392547946
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 392547948}
-  - component: {fileID: 392547947}
-  m_Layer: 0
-  m_Name: MenuManger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &392547947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392547946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2cb0da2c4076f142bf404df86ae4105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuManger
-  menuGameOver: {fileID: 0}
-  menuNormal: {fileID: 0}
-  menuGamePlay: {fileID: 755186725}
---- !u!4 &392547948
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392547946}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08243, y: -5.48246, z: -3.22318}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &416389902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,7 +2410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb32f7e953fa808428fd66bac0032c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Start_Game
-  nombreNivel1: Level_01
 --- !u!114 &1026216779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4669,6 +4620,5 @@ SceneRoots:
   - {fileID: 1399397045}
   - {fileID: 619048602}
   - {fileID: 519979213}
-  - {fileID: 392547948}
   - {fileID: 174740561}
   - {fileID: 214029107}
